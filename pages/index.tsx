@@ -24,6 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   const choice = context.query.choice as string;
   const choices = await getChoiceRating({ choice });
+  console.log(choices);
 
   return {
     props: {
@@ -36,6 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const HomePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { headerData, bodyData } = Object.values(fallback)[0] as TableData;
+  console.log(headerData);
 
   return (
     <SWRConfig value={{ fallback }}>
@@ -54,7 +56,7 @@ const HomePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSide
           <Table size="small" stickyHeader>
             <TableHead>
               <TableRow>
-                {headerData[0].map((config, index) => (
+                {headerData.map((config, index) => (
                   <TableCell
                     key={config[1]}
                     align="center"
@@ -74,34 +76,43 @@ const HomePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSide
                             borderRightColor: (theme) => theme.palette.grey[200],
                           }
                     }
-                    colSpan={config[2]}
+                    colSpan={config[2].length}
                   >
                     {config[0]}
                   </TableCell>
                 ))}
               </TableRow>
               <TableRow>
-                {headerData[1].map((title, index) => (
-                  <TableCell
-                    style={{ top: 37 }}
-                    sx={
-                      index === 0
-                        ? {
-                            position: 'sticky',
-                            zIndex: 3,
-                            left: 0,
-                            borderRight: 1,
-                            borderRightColor: (theme) => theme.palette.grey[200],
-                            background: (theme) => theme.palette.common.white,
-                          }
-                        : undefined
-                    }
-                    key={`${title}-${index}`}
-                    align="center"
-                  >
-                    {title}
-                  </TableCell>
-                ))}
+                {headerData.map((config, configIndex) =>
+                  config[2].map((column, columnIndex) => (
+                    <TableCell
+                      style={{ top: 37 }}
+                      sx={{
+                        ...(configIndex === 0 && columnIndex === 0
+                          ? {
+                              position: 'sticky',
+                              zIndex: 3,
+                              left: 0,
+                              background: (theme) => theme.palette.common.white,
+                            }
+                          : {}),
+                        borderRight: 1,
+
+                        ...(columnIndex === config[2].length - 1
+                          ? {
+                              borderRightColor: (theme) => theme.palette.grey[200],
+                            }
+                          : {
+                              borderRightColor: (theme) => theme.palette.grey[100],
+                            }),
+                      }}
+                      key={`${column}-${config[1]}`}
+                      align="center"
+                    >
+                      {column}
+                    </TableCell>
+                  ))
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -125,15 +136,15 @@ const HomePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSide
                     column.map((value, index) => (
                       <TableCell
                         key={`${row.id}-${index}-${column}-${value}`}
-                        sx={
-                          index === column.length - 1
+                        sx={{
+                          borderRight: 1,
+
+                          ...(index === column.length - 1
                             ? {
-                                borderRight: 1,
                                 borderRightColor: (theme) => theme.palette.grey[200],
-                                background: (theme) => theme.palette.common.white,
                               }
-                            : undefined
-                        }
+                            : { borderRightColor: (theme) => theme.palette.grey[100] }),
+                        }}
                         align="center"
                       >
                         {value}

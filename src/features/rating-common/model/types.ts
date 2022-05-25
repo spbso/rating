@@ -1,7 +1,6 @@
-type ConfigType = [string, number | null, number];
-export type HeaderData = [ConfigType, string[]];
+type ConfigType = [string, number | null, string[]];
+export type HeaderData = ConfigType[];
 
-type RowEvent = number[];
 export type BodyData = {
   [id: string]: {
     id: number;
