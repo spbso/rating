@@ -14,27 +14,27 @@ const Navbar: FC<NavbarProps> = () => {
         <Toolbar>
           <Grid container={true} spacing={2}>
             <Grid item>
-              <Button variant="contained" href={`?choice=0`}>
+              {/* <Button variant="contained" href={`?choice=0`}>
                 Общая
-              </Button>
+              </Button> */}
             </Grid>
             <Grid item>
-              <Button variant="outlined" href={`?choice=1`}>
+              <Button variant="outlined" href={`/choice/1`}>
                 Творческий блок
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" href={`?choice=2`}>
+              <Button variant="outlined" href={`/choice/2`}>
                 Спортивный блок
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" href={`?choice=3`}>
+              <Button variant="outlined" href={`/choice/3`}>
                 Волонтерский блок
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" href={`?choice=4`}>
+              <Button variant="outlined" href={`/choice/4`}>
                 Городские
               </Button>
             </Grid>

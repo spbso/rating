@@ -1,15 +1,25 @@
-type ConfigType = [string, number | null, string[]];
-export type HeaderData = ConfigType[];
-
-export type BodyData = {
-  [id: string]: {
-    id: number;
-    title: string;
-    columns: number[][];
-  };
+export type ColumnsData = {
+  title: string;
+  columns: string[];
 };
 
+type ColumnValue = null | number;
+
+type EventData = {
+  id: string;
+  title: string;
+  is_canonical: boolean;
+  values: {
+    [id: string]: ColumnValue[];
+  };
+};
+export type EventsData = EventData[];
 export interface TableData {
-  headerData: HeaderData;
-  bodyData: BodyData;
+  columnsData: ColumnsData;
+  brigadesData: {
+    id: number;
+    title: string;
+  }[];
+  eventsData: EventsData;
+  summaryData: EventData;
 }
