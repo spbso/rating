@@ -1,10 +1,9 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import Navbar from 'src/features/rating-common/ui/molecules/Navbar';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { Container } from '@mui/material';
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
     props: {
       fallback: {},
@@ -12,7 +11,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-const HomePage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const HomePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <SWRConfig value={{ fallback }}>
       <Container
@@ -27,7 +26,6 @@ const HomePage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>) 
         maxWidth={false}
       >
         hello
-        <Navbar />
       </Container>
     </SWRConfig>
   );

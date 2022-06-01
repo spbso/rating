@@ -2,9 +2,9 @@ import React from 'react';
 import { SWRConfig } from 'swr';
 import Head from 'next/head';
 
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { getChoiceRating } from 'src/features/rating-common/api/module.api';
-import Navbar from 'src/features/rating-common/ui/molecules/Navbar';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { getChoiceRating } from 'src/features/choice/api/module.api';
+import Navbar from 'src/features/choice/ui/molecules/Navbar';
 import {
   Container,
   SxProps,
@@ -17,19 +17,13 @@ import {
   Typography,
   Theme,
 } from '@mui/material';
-import { TableData } from 'src/features/rating-common/model/types';
+import { TableData } from 'src/features/choice/model/types';
 
-export async function getStaticPaths() {
-  const paths = ['1', '2', '3', '4'].map((choice) => ({
-    params: { choice },
-  }));
-
-  return { paths, fallback: false };
-}
-
-// This also gets called at build time
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const choice = Number(params.choice) || 1;
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  if (!['1', '2', '3', '4'].includes(params.choice as string)) {
+    return { notFound: true };
+  }
+  const choice = Number(params.choice);
 
   const choices = await getChoiceRating({ choice });
 
@@ -52,7 +46,7 @@ const bodyStyles: SxProps<Theme> = {
   borderRightColor: (theme) => theme.palette.grey[200],
 };
 
-const ChoicePage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const ChoicePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { brigadesData, eventsData, columnsData, summaryData } = Object.values(
     fallback
   )[0] as TableData;
