@@ -56,7 +56,6 @@ const EventPage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSid
   const { back, query } = useRouter();
   const eventId = query.id;
   const event = fallback[`event-${eventId}`] as EventData;
-  console.log(event);
 
   return (
     <SWRConfig value={{ fallback }}>
