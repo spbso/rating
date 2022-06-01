@@ -28,7 +28,8 @@ export interface EventData {
     title: string;
     competitionParticipants: {
       applications: CompetitionParticipant[];
-      inPlayoff: CompetitionParticipant[];
+      involvers: CompetitionParticipant[];
+      playoffers: CompetitionParticipant[];
       winners: CompetitionParticipant[];
     };
   }[];

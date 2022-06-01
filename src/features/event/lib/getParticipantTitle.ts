@@ -12,7 +12,10 @@ export const getParticipantTitle = (worth: ParticipantWorth): string => {
 };
 
 export const getCompetitionParticipantTitle = (worth: string): string => {
-  if (worth === 'inPlayoff') {
+  if (worth === 'involvers') {
+    return 'Участие';
+  }
+  if (worth === 'playoffers') {
     return 'Полуфинал';
   }
   if (worth === 'winners') {
