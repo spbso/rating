@@ -1,6 +1,6 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
-import Head from 'next/head';
+import Link from 'next/link';
 
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getChoiceRating } from 'src/features/choice/api/module.api';
@@ -16,6 +16,7 @@ import {
   TableRow,
   Typography,
   Theme,
+  Link as MuiLink,
 } from '@mui/material';
 import { TableData } from 'src/features/choice/model/types';
 
@@ -85,7 +86,9 @@ const ChoicePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSi
                     sx={headerStyles}
                     colSpan={columnsData.columns.length}
                   >
-                    {event.title}
+                    <Link href={`/event/${event.id}`} passHref={true}>
+                      <MuiLink>{event.title}</MuiLink>
+                    </Link>
                   </TableCell>
                 ))}
                 <TableCell align="center" sx={headerStyles} colSpan={3}>
