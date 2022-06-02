@@ -1,7 +1,8 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
+import Navbar from 'src/features/choice/ui/molecules/Navbar';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
@@ -27,6 +28,7 @@ const HomePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSide
       >
         hello
       </Container>
+      <Navbar />
     </SWRConfig>
   );
 };

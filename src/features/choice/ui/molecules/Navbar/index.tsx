@@ -1,4 +1,7 @@
-import { AppBar, Toolbar, Button, Grid } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 import { FC } from 'react';
 
 interface NavbarProps {}

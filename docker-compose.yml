@@ -1,17 +1,12 @@
-version: "3.7"
+version: '3.7'
 
 services:
-  so_client:
+  rating_client:
     platform: linux/x86_64
-    container_name: so_client
-    image: ghcr.io/vmatyagin/so_client:latest
+    container_name: rating_client
+    image: ghcr.io/vmatyagin/rating_client:latest
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ".:/app"
-      - "/app/node_modules"
     ports:
-      - "3000:3000"
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+      - '3010:3000'

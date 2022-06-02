@@ -2,29 +2,39 @@ import React from 'react';
 import { SWRConfig } from 'swr';
 import Link from 'next/link';
 
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getChoiceRating } from 'src/features/choice/api/module.api';
 import Navbar from 'src/features/choice/ui/molecules/Navbar';
-import {
-  Container,
-  SxProps,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  Theme,
-  Link as MuiLink,
-} from '@mui/material';
+import { SxProps } from '@mui/material';
+
+import Container from '@mui/material/Container';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import { Theme } from '@mui/material/styles';
+import MuiLink from '@mui/material/Link';
+
 import { TableData } from 'src/features/choice/model/types';
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  if (!['1', '2', '3', '4'].includes(params.choice as string)) {
+export const getStaticPaths = async () => {
+  return {
+    paths: ['1', '2', '3', '4'].map((choice) => ({
+      params: {
+        choice,
+      },
+    })),
+    fallback: false,
+  };
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  if (!['1', '2', '3', '4'].includes(params!.choice as string)) {
     return { notFound: true };
   }
-  const choice = Number(params.choice);
+  const choice = Number(params!.choice);
 
   const choices = await getChoiceRating({ choice });
 
@@ -47,7 +57,7 @@ const bodyStyles: SxProps<Theme> = {
   borderRightColor: (theme) => theme.palette.grey[200],
 };
 
-const ChoicePage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const ChoicePage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { brigadesData, eventsData, columnsData, summaryData } = Object.values(
     fallback
   )[0] as TableData;

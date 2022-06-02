@@ -1,11 +1,10 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import Head from 'next/head';
-import type { NextPage } from 'next';
-import type { AppProps } from 'next/app';
+import { NextPage } from 'next';
+import { AppProps } from 'next/app';
 import theme from '../src/theme';
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import { EmotionCache, CacheProvider } from '@emotion/react';
-import { CssBaseline } from '@mui/material';
 import createEmotionCache from 'src/theme/createEmotionCache';
 
 export type AppPropsWithLayout = AppProps & {

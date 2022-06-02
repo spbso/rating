@@ -1,36 +1,21 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
-import Link from 'next/link';
 
-import {
-  GetServerSideProps,
-  GetStaticProps,
-  InferGetServerSidePropsType,
-  InferGetStaticPropsType,
-} from 'next';
-import { getChoiceRating } from 'src/features/choice/api/module.api';
-import Navbar from 'src/features/choice/ui/molecules/Navbar';
-import {
-  Container,
-  SxProps,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  Theme,
-  Link as MuiLink,
-  AppBar,
-  Toolbar,
-  Box,
-  Tab,
-  Tabs,
-  IconButton,
-  Paper,
-} from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Container from '@mui/material/Container';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 import { useRouter } from 'next/router';
 import { getEventRating } from 'src/features/event/api';
 import { EventData, ParticipantWorth } from 'src/features/event/model/types';
@@ -38,9 +23,23 @@ import {
   getCompetitionParticipantTitle,
   getParticipantTitle,
 } from 'src/features/event/lib/getParticipantTitle';
+import { getEventIds } from 'src/features/event/api/module.api';
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const eventId = Number(params.id);
+export const getStaticPaths = async () => {
+  const { eventIds } = await getEventIds();
+
+  return {
+    paths: eventIds.map((id) => ({
+      params: {
+        id: id.toString(),
+      },
+    })),
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const eventId = Number(params!.id!);
 
   const event = await getEventRating({ eventId });
 
@@ -52,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
   };
 };
-const EventPage = ({ fallback }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const EventPage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { back, query } = useRouter();
   const eventId = query.id;
   const event = fallback[`event-${eventId}`] as EventData;

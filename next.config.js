@@ -1,20 +1,12 @@
-const commonConfig = {
-  distDir: 'build',
-  future: {},
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
+// @ts-check
 
-    return config;
-  },
-  env: {
-    ROOT_PATH: '',
+/**
+ * @type {import('next').NextConfig}
+ **/
+const nextConfig = {
+  // exportPathMap: 'build',
+  experimental: {
+    outputStandalone: true,
   },
 };
-
-module.exports = (phase) => {
-  // Default Return
-  return commonConfig;
-};
+module.exports = nextConfig;

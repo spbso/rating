@@ -3,7 +3,6 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import theme from '../src/theme';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from 'src/theme/createEmotionCache';
-import { AppPropsWithLayout } from './_app';
 
 export default class MyDocument extends Document {
   render(): ReactElement {
@@ -76,9 +75,9 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) =>
-        function enhancer(props: AppPropsWithLayout) {
-          return <App emotionCache={cache} {...props} />;
+      enhanceApp: (App: any) =>
+        function enhancer(props) {
+          return <App {...props} emotionCache={cache} />;
         },
     });
 
