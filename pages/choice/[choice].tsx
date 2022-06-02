@@ -76,7 +76,16 @@ const ChoicePage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>
         maxWidth={false}
       >
         <TableContainer>
-          <Table size="small" stickyHeader>
+          <Table
+            size="small"
+            stickyHeader
+            sx={{
+              '.MuiTableCell-root': {
+                fontSize: { xs: '10px', sm: '14px' },
+                lineHeight: { xs: '10px', sm: '16px' },
+              },
+            }}
+          >
             <TableHead>
               <TableRow>
                 {/* first column */}
@@ -114,16 +123,15 @@ const ChoicePage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>
                     position: 'sticky',
                     zIndex: 3,
                     left: 0,
+                    top: { xs: 23 },
                   }}
-                  style={{ top: 37 }}
                 />
                 {eventsData.map((event) =>
                   columnsData.columns.map((column, index) => (
                     <TableCell
                       key={`${event.id}-${index}`}
-                      style={{ top: 37 }}
                       align="center"
-                      sx={headerStyles}
+                      sx={{ ...headerStyles, top: { xs: 23 } }}
                     >
                       {column}
                     </TableCell>

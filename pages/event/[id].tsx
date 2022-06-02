@@ -96,8 +96,8 @@ const EventPage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>)
                   size="small"
                   sx={{
                     '.MuiTableCell-root': {
-                      fontSize: '11px',
-                      lineHeight: '11px',
+                      fontSize: { xs: '10px', sm: '12px' },
+                      lineHeight: { xs: '10px', sm: '12px' },
                     },
                   }}
                 >
@@ -122,7 +122,10 @@ const EventPage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>)
                         }}
                       >
                         <TableCell>{participant.title}</TableCell>
-                        <TableCell align="right" sx={{ whiteSpace: 'nowrap' }}>
+                        <TableCell
+                          align="right"
+                          sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
+                        >
                           {participant.brigade}
                         </TableCell>
                         <TableCell align="right">{participant.lastYear}</TableCell>
@@ -158,8 +161,8 @@ const EventPage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>)
                       size="small"
                       sx={{
                         '.MuiTableCell-root': {
-                          fontSize: '11px',
-                          lineHeight: '11px',
+                          fontSize: { xs: '10px', sm: '12px' },
+                          lineHeight: { xs: '10px', sm: '12px' },
                         },
                       }}
                     >
