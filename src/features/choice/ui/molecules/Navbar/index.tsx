@@ -23,21 +23,21 @@ const Navbar: FC<NavbarProps> = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href={`/choice/1`} passHref={true}>
+              <Link href={`/choice/2`} passHref={true}>
                 <Button variant="outlined" href={`/choice/2`}>
                   Спортивный блок
                 </Button>
               </Link>
             </Grid>
             <Grid item>
-              <Link href={`/choice/1`} passHref={true}>
+              <Link href={`/choice/3`} passHref={true}>
                 <Button variant="outlined" href={`/choice/3`}>
                   Волонтерский блок
                 </Button>
               </Link>
             </Grid>
             <Grid item>
-              <Link href={`/choice/1`} passHref={true}>
+              <Link href={`/choice/4`} passHref={true}>
                 <Button variant="outlined" href={`/choice/4`}>
                   Городские
                 </Button>
