@@ -1,5 +1,5 @@
+import { EventData } from 'src/features/block/model/types';
 import { apiInstance } from 'src/shared/api/base';
-import { EventData } from '../model/types';
 
 type GetEventRatingType = (props: { eventId: number }) => Promise<EventData>;
 type GetEventIds = () => Promise<{ eventIds: number[] }>;

@@ -10,6 +10,7 @@ import { FC, useState } from 'react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { CHOICE_ROUTES } from 'src/features/block/consts';
 
 interface NavbarProps {}
 
@@ -19,19 +20,19 @@ interface BlockType {
 }
 const blocks: BlockType[] = [
   {
-    url: '/choice/1',
+    url: `/${CHOICE_ROUTES.ART}`,
     title: 'Творческий блок',
   },
   {
-    url: '/choice/2',
+    url: `/${CHOICE_ROUTES.SPORT}`,
     title: 'Спортивный блок',
   },
   {
-    url: '/choice/3',
+    url: `/${CHOICE_ROUTES.VOLONTEER}`,
     title: 'Волонтерский блок',
   },
   {
-    url: '/choice/4',
+    url: `/${CHOICE_ROUTES.CITY}`,
     title: 'Городские',
   },
 ];
@@ -57,7 +58,7 @@ const Navbar: FC<NavbarProps> = () => {
             <Grid container={true} spacing={2}>
               {blocks.map((block) => (
                 <Grid key={block.url} item>
-                  <Link href={`/choice/1`} passHref={true}>
+                  <Link href={block.url} passHref={true}>
                     <Button variant="outlined">{block.title}</Button>
                   </Link>
                 </Grid>
