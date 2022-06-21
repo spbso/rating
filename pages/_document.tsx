@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
-
+          <meta name = "robots" content = "noindex, nofollow" />
           <link rel="shortcut icon" href={`${process.env.ROOT_PATH}/favicon.ico`} />
           <link rel="icon" type="image/png" href={`${process.env.ROOT_PATH}/favicon-16x16.png`} />
           <link
