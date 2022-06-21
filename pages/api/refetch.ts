@@ -6,7 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // choices
     await Promise.all(
-      Object.values(CHOICE_ROUTES).map((block) => res.unstable_revalidate(`/rating/block/${block}`))
+      Object.values(CHOICE_ROUTES).map((block) => res.unstable_revalidate(`/rating/${block}`))
     );
     const { eventIds } = await getEventIds();
     await Promise.all(
