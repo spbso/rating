@@ -57,7 +57,20 @@ const ImageTable: FC<ImageTableProps> = ({ brigades, summary }) => {
       </TableHead>
       <TableBody>
         {brigades.map((brigade, index) => (
-          <TableRow key={brigade.id}>
+          <TableRow
+            hover
+            sx={{
+              '& .MuiTableCell-root:first-of-type': {
+                background: (theme) => theme.palette.common.white,
+              },
+              '&:hover': {
+                '& .MuiTableCell-root:first-of-type': {
+                  background: '#F5F5F5',
+                },
+              },
+            }}
+            key={brigade.id}
+          >
             <TableCell
               align="left"
               sx={{
