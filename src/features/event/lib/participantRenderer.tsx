@@ -15,14 +15,7 @@ export const participantRenderer = (participants: Participant[], title: string) 
     return null;
   }
   return (
-    <Box
-      sx={{
-        mb: '20px',
-        '&:last-of-type': {
-          mb: 0,
-        },
-      }}
-    >
+    <Box>
       <Typography variant="h6" component="h4" sx={{ mb: '12px' }}>
         {title}
       </Typography>

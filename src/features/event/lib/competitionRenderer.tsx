@@ -15,7 +15,7 @@ export const competitionRenderer = (competition: Competition, values: Competitio
   }
   return (
     <Box key={competition.id}>
-      <Typography variant="h6" component="h4" sx={{ mb: '12px' }}>
+      <Typography variant="h6" component="h4" sx={{ mb: '12px', fontWeight: 700 }}>
         {competition.title}
       </Typography>
 

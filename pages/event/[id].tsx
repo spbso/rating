@@ -117,7 +117,18 @@ const EventPage = ({ fallback }: InferGetStaticPropsType<typeof getStaticProps>)
       </AppBar>
       <Toolbar sx={{ visibility: 'hidden' }} />
 
-      <Container component="main" sx={{ py: '20px' }}>
+      <Container
+        component="main"
+        sx={{
+          py: '20px',
+          '& .MuiBox-root': {
+            mb: '20px',
+            '&:last-of-type': {
+              mb: 0,
+            },
+          },
+        }}
+      >
         {participantRenderer(organizers, 'Организаторы')}
         {participantRenderer(volonteers, 'Волонтеры')}
         {participantRenderer(participants, 'Участники')}
